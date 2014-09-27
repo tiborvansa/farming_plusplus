@@ -122,13 +122,13 @@ minetest.register_node("farming_plus:potato", {
 	drawtype = "plantlike",
 	tiles = {"farming_potato_7.png"},
 	drop = {
-		max_items = 3, -- reduced from 6>3
+		max_items = 4, -- reduced from 6>4
 		items = {
 --			{ items = {'farming_plus:potato_seed'} },
 --			{ items = {'farming_plus:potato_seed'}, rarity = 2},
 --			{ items = {'farming_plus:potato_seed'}, rarity = 5},
-			{ items = {'farming_plus:potato_item'} },
-			{ items = {'farming_plus:potato_item'}, rarity = 2 },
+			{ items = {'farming_plus:potato_item 2'} },
+			{ items = {'farming_plus:potato_item'}, rarity = 3 },
 			{ items = {'farming_plus:potato_item'}, rarity = 5 }
 		}
 	},
@@ -139,6 +139,10 @@ minetest.register_node("farming_plus:potato", {
 minetest.register_craftitem("farming_plus:potato_item", {
 	description = S("Potato"),
 	inventory_image = "farming_potato.png",
+-- added for mtfood compatibility, potato slices overwrites seed craft
+	on_place = function(itemstack, placer, pointed_thing)
+		return farming.place_seed(itemstack, placer, pointed_thing, "farming_plus:potato_1")
+	end
 })
 
 farming.add_plant("farming_plus:potato", {"farming_plus:potato_1", "farming_plus:potato_2", "farming_plus:potato_3", "farming_plus:potato_4", "farming_plus:potato_5", "farming_plus:potato_6"}, 250, 2)
