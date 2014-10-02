@@ -1,13 +1,14 @@
 ===FARMING_PLUS+ MOD for MINETEST===
-version 1.01
+version 1.02
 by MTDad
-Built from PilzAdam's Farming_Plus, Original WTFPL License Below.
-Cucumber and Corn textures, plus some code, come from Doc's Docfarming mod.
-Melon and pumpkin slices come from Tenplus's Farming Redo Mod.
-Raspberry inventory pic from the Bushes_Classic mod.
-Anything else not of PilzAdam's original creation was MTDad's (to the best of my recollection at the time of writing this) and licensed WTFPL.
+--Built from PilzAdam's Farming_Plus, Original WTFPL License Below.
+--Cucumber and Corn textures, plus some code, come from Doc's Docfarming mod.
+--Melon and pumpkin slices come from Tenplus's Farming Redo Mod.
+--To integrate with hud and diet I had to study their code, so any resemblance to the code of Blockmen and Rubenwardy is NOT accidental.
+--Anything else not of PilzAdam's original creation was MTDad's (to the best of my recollection at the time of writing this) and licensed WTFPL.
 
 Changelog:
+v. 1.02  -converted to modpack, hud, diet, food, food_sweet support added, plus 3 recipes.
 v. 1.01 -added whole potato planting for mtfoods compatibility plus minor texture fixes.
 
 ===FARMING_PLUS MOD for MINETEST===
