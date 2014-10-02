@@ -8,6 +8,7 @@ S = farming.S
 minetest.register_craftitem("farming_plus:melon_item", {
 	description = S("Melon Slice"),
 	inventory_image = "farming_melon_slice.png",
+	groups = {food_melon = 1},
 	on_use = minetest.item_eat(2),
 })
 

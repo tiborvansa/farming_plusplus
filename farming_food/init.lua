@@ -28,6 +28,7 @@ if path ~= nil then
 	overwrite("farming_plus:peach_item", 2)
 	overwrite("farming_plus:raspberry_item", 2)
 	overwrite("farming_plus:walnut_item", 2)
+	overwrite("farming:pumpkin_slice", 2)
 	if minetest.get_modpath("food") then
 		overwrite("farming_food:corn_bread", 4)
 		overwrite("farming_food:peach_cobbler", 4)

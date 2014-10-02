@@ -16,6 +16,7 @@ minetest.register_craftitem("farming_plus:corn_seed", {
 minetest.register_craftitem("farming_plus:corn_item", {
 	description = S("Corn"),
 	inventory_image = "corn.png",
+	groups = {food_corn = 1},
 	on_use = minetest.item_eat(4),
 })
 -- Craft added to acquire corn seed

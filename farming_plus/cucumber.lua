@@ -131,6 +131,7 @@ minetest.register_node("farming_plus:cucumber", {
 minetest.register_craftitem("farming_plus:cucumber_item", {
 	description = S("Cucumber"),
 	inventory_image = "farming_cucumber.png",
+	groups = {food_cucumber = 1},
 	on_use = minetest.item_eat(3),
 })
 

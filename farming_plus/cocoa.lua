@@ -72,6 +72,7 @@ minetest.register_node("farming_plus:cocoa", {
 minetest.register_craftitem("farming_plus:cocoa_bean", {
 	description = "Cocoa Bean",
 	inventory_image = "farming_cocoa_bean.png",
+	groups = {food_cocoa = 1},
 })
 
 minetest.register_craft({

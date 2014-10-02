@@ -139,6 +139,7 @@ minetest.register_node("farming_plus:potato", {
 minetest.register_craftitem("farming_plus:potato_item", {
 	description = S("Potato"),
 	inventory_image = "farming_potato.png",
+	groups = {food_potato = 1},
 -- added for mtfood compatibility, potato slices overwrites seed craft
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming_plus:potato_1")

@@ -8,6 +8,7 @@ S = farming.S
 minetest.register_craftitem("farming_plus:walnut_item", {
 	description = S("Walnut"),
 	inventory_image = "farming_walnut.png",
+	groups = {food_walnut = 1},
 	on_use = minetest.item_eat(4),
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming_plus:walnut_1")
