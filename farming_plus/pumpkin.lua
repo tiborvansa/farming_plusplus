@@ -485,6 +485,7 @@ minetest.register_alias("farming:pumpkin_7", "farming:pumpkin")
 minetest.register_alias("farming:pumpkin_6", "farming:pumpkin_2")
 minetest.register_alias("farming:pumpkin_5", "farming:pumpkin_2")
 minetest.register_alias("farming:pumpkin_4", "farming:pumpkin_2")
+minetest.register_alias("farming:pumpkin_3", "farming:pumpkin_2")
 minetest.register_alias("farming:jackolantern", "farming:pumpkin_face_light")
 minetest.register_alias("farming:pumpkin_dough", "farming:pumpkin:flour")
 -- pumpkin cutting for redo compatibility
