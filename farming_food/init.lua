@@ -2,6 +2,9 @@
 -- A Mod providing a few recipes and integration with other Mods
 -- by MTDad
 
+-- Get the coffee
+dofile(minetest.get_modpath("farming_food").."/hotcoffee.lua")
+
 -- If food mod installed, load extra recipes
 if minetest.get_modpath("food") then
 	dofile(minetest.get_modpath("farming_food").."/recipes.lua")
@@ -29,6 +32,7 @@ if path ~= nil then
 	overwrite("farming_plus:raspberry_item", 2)
 	overwrite("farming_plus:walnut_item", 2)
 	overwrite("farming:pumpkin_slice", 2)
+	overwrite("farming_food:coffee_mug_hot", 2, "farming_food:coffee_mug_empty")
 	if minetest.get_modpath("food") then
 		overwrite("farming_food:corn_bread", 4)
 		overwrite("farming_food:peach_cobbler", 4)

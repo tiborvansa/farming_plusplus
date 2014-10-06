@@ -345,6 +345,9 @@ dofile(minetest.get_modpath("farming_plus").."/lemons.lua")
 -- ========= WALNUT =========
 dofile(minetest.get_modpath("farming_plus").."/walnut.lua")
 
+-- ========= COFFEE =========
+dofile(minetest.get_modpath("farming_plus").."/coffee.lua")
+
 -- to deal with leftover docfarming grass 
 
 minetest.register_node("farming_plus:docgrass", {
