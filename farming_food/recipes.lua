@@ -50,7 +50,8 @@ minetest.register_craftitem("farming_food:corn_bread_dough", {
 minetest.register_craft({
 	type = "shapeless",
 	output = "farming_food:corn_bread_dough 3",
-	recipe = {"group:food_corn", "group:food_corn", "group:food_milk", "group:food_egg"}
+	recipe = {"group:food_corn", "group:food_corn", "group:food_milk", "group:food_egg"},
+	replacements = {{"animalmaterials:milk", "vessels:drinking_glass"}},
 })
 
 -- Strawberry Lemonade

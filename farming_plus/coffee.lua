@@ -22,7 +22,7 @@ minetest.register_node("farming_plus:coffee_1", {
 			{-0.5, -0.5, -0.5, 0.5, -0.5+5/16, 0.5}
 		},
 	},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,plant=1},
+	groups = {snappy=3, flammable=2, not_in_creative_inventory=1, attached_node=1, plant=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -38,7 +38,7 @@ minetest.register_node("farming_plus:coffee_2", {
 			{-0.5, -0.5, -0.5, 0.5, -0.5+7/16, 0.5}
 		},
 	},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,plant=1},
+	groups = {snappy=3, flammable=2, not_in_creative_inventory=1, attached_node=1, plant=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -54,7 +54,7 @@ minetest.register_node("farming_plus:coffee_3", {
 			{-0.5, -0.5, -0.5, 0.5, -0.5+9/16, 0.5}
 		},
 	},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,plant=1},
+	groups = {snappy=3, flammable=2, not_in_creative_inventory=1, attached_node=1, plant=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -70,7 +70,7 @@ minetest.register_node("farming_plus:coffee_4", {
 			{-0.5, -0.5, -0.5, 0.5, -0.5+11/16, 0.5}
 		},
 	},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,plant=1},
+	groups = {snappy=3, flammable=2, not_in_creative_inventory=1, attached_node=1, plant=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -78,15 +78,15 @@ minetest.register_node("farming_plus:coffee", {
 	paramtype = "light",
 	walkable = false,
 	drawtype = "plantlike",
-	tiles = {"farming_coffee_1.png"},
+	tiles = {"farming_coffee_5.png"},
 	drop = {
 		items = {
-			{items = {'farming_plus:coffee_beans 2'},rarity=1},
-			{items = {'farming_plus:coffee_beans 2'},rarity=2},
-			{items = {'farming_plus:coffee_beans 2'},rarity=3},
+			{items = {"farming_plus:coffee_beans 2"}, rarity=1},
+			{items = {"farming_plus:coffee_beans 2"}, rarity=2},
+			{items = {"farming_plus:coffee_beans 2"}, rarity=3},
 		}
 	},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1, plant=1},
+	groups = {snappy=3, flammable=2, not_in_creative_inventory=1, attached_node=1, plant=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
