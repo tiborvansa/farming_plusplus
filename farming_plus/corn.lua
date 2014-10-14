@@ -73,7 +73,7 @@ minetest.register_node("farming_plus:corn_4", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"corn4.png"},
-	groups = {snappy=3, flammable=2, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=2, not_in_creative_inventory=1, plant=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
 minetest.register_node("farming_plus:corn_21", {
