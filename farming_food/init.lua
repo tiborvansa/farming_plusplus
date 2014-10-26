@@ -8,7 +8,7 @@ dofile(minetest.get_modpath("farming_food").."/hotcoffee.lua")
 -- If food mod installed, load extra recipes
 if minetest.get_modpath("food") then
 	dofile(minetest.get_modpath("farming_food").."/recipes.lua")
-	else return end
+end
 
 -- pickup new food and register it with hud/diet
 
