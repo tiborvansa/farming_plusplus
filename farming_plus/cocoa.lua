@@ -80,3 +80,5 @@ minetest.register_craft({
 	type = "shapeless",
 	recipe = {"farming_plus:cocoa"},
 })
+
+minetest.register_alias("farming:cocoa_beans", "farming_plus:cocoa_bean")

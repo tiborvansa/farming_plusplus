@@ -13,6 +13,21 @@ minetest.register_craftitem("farming_plus:lemon_seed", {
 	end
 })
 
+minetest.register_craftitem("farming_plus:lemon_item", {
+	description = S("Lemon"),
+	inventory_image = "farming_lemon.png",
+	groups = {food_lemon = 1},
+	on_use = minetest.item_eat(4),
+})
+
+minetest.register_craft({
+	output = "farming_plus:lemon_seed",
+	recipe = {
+		{"farming_plus:lemon_item"},
+	}
+})
+
+-- trunk growth
 minetest.register_node("farming_plus:lemon_1", {
 	paramtype = "light",
 	walkable = false,
@@ -61,6 +76,40 @@ minetest.register_node("farming_plus:lemon_3", {
 	sounds = default.node_sound_leaves_defaults(),
 })
 
+minetest.register_node("farming_plus:lemon_4", {
+	paramtype = "light",
+	walkable = true,
+	drawtype = "plantlike",
+	tiles = {"farming_orangetrunk_4.png"},
+	drop = {
+		max_items = 3,
+		items = {
+			{ items = {'default:wood'} },
+			{ items = {'default:wood'}, rarity = 2 },
+			{ items = {'default:wood'}, rarity = 5 }
+		}
+	},
+	groups = {snappy=3, flammable=2, not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+})
+
+minetest.register_node("farming_plus:lemon_5", {
+	paramtype = "light",
+	walkable = true,
+	drawtype = "plantlike",
+	tiles = {"farming_orangetrunk_4.png"},
+	drop = {
+		max_items = 3,
+		items = {
+			{ items = {'default:wood'} },
+			{ items = {'default:wood'}, rarity = 2 },
+			{ items = {'default:wood'}, rarity = 5 }
+		}
+	},
+	groups = {snappy=3, flammable=2, not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+})
+
 minetest.register_node("farming_plus:lemon", {
 	paramtype = "light",
 	walkable = true,
@@ -74,53 +123,48 @@ minetest.register_node("farming_plus:lemon", {
 			{ items = {'default:wood'}, rarity = 5 }
 		}
 	},
-	groups = {snappy=3, flammable=2, not_in_creative_inventory=1,plant=1},
+	groups = {snappy=3, flammable=2, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
-minetest.register_craftitem("farming_plus:lemon_item", {
-	description = S("Lemon"),
-	inventory_image = "farming_lemon.png",
-	groups = {food_lemon = 1},
-	on_use = minetest.item_eat(4),
-})
-
--- lemon seed craft added here
-minetest.register_craft({
-	output = "farming_plus:lemon_seed",
-	recipe = {
-		{"farming_plus:lemon_item"},
-	}
-})
-
-farming.add_plant("farming_plus:lemon", {"farming_plus:lemon_1", "farming_plus:lemon_2", "farming_plus:lemon_3"}, 250, 2)
-
--- second tier growth section, borrowed from DocFarming's "Corn"
-minetest.register_node("farming_plus:lemon_leaves", {
+-- second tier growth section,
+minetest.register_node("farming_plus:lemon_4b", {
 	paramtype = "light",
 	walkable = true,
 	drawtype = "allfaces_optional",
 	drop = "",
 	tiles = {"farming_fruittree_1.png"},
+	after_dig_node = function(pos)
+		minetest.set_node(pos, {name = "farming_plus:lemon_4b"})
+	end,
 	groups = {snappy=3, flammable=2, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
-minetest.register_node("farming_plus:lemon_blossoms", {
+
+minetest.register_node("farming_plus:lemon_5b", {
 	paramtype = "light",
 	walkable = true,
 	drawtype = "allfaces_optional",
 	drop = "",
 	tiles = {"farming_lemon_blossoms.png"},
+	after_dig_node = function(pos)
+		minetest.set_node(pos, {name = "farming_plus:lemon_4b"})
+		pos.y = pos.y-1
+		minetest.set_node(pos, {name = "farming_plus:lemon_4"})
+	end,
 	groups = {snappy=3, flammable=2, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
-minetest.register_node("farming_plus:lemon_fruited", {
+
+minetest.register_node("farming_plus:lemonb", {
 	paramtype = "light",
 	walkable = true,
 	drawtype = "allfaces_optional",
 	tiles = {"farming_lemon_fruited.png"},
 	after_dig_node = function(pos)
-		minetest.env:add_node(pos, {name="farming_plus:lemon_leaves"})
+		minetest.set_node(pos, {name = "farming_plus:lemon_4b"})
+		pos.y = pos.y-1
+		minetest.set_node(pos, {name = "farming_plus:lemon_4"})
 	end,
 	drop = {
 		max_items = 4,
@@ -134,67 +178,12 @@ minetest.register_node("farming_plus:lemon_fruited", {
 	groups = {snappy=3, flammable=2, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
-minetest.register_abm({
-	nodenames = "farming_plus:lemon",
-	interval = 30,
-	chance = 1,
-	action = function(pos, node)
---		pos.y = pos.y-1
---		if minetest.env:get_node(pos).name ~= "farming:soil_wet" then
---			return
---		end
---		pos.y = pos.y+1
-		if not minetest.env:get_node_light(pos) then
-			return
-		end
-		if minetest.env:get_node_light(pos) < 8 then
-			return
-		end
-		pos.y=pos.y+1
-		if minetest.env:get_node(pos).name ~= "air" then
-			return
-		end
-		minetest.env:set_node(pos, {name="farming_plus:lemon_leaves"})
 
-	end
-})
-minetest.register_abm({
-	nodenames = "farming_plus:lemon_leaves",
-	interval = 250,
-	chance = 2,
-	action = function(pos, node)
---		pos.y = pos.y-2
---		if minetest.env:get_node(pos).name ~= "farming:soil_wet" then
---			return
---		end
---		pos.y = pos.y+2
-		if not minetest.env:get_node_light(pos) then
-			return
-		end
-		if minetest.env:get_node_light(pos) < 8 then
-			return
-		end
-		minetest.env:set_node(pos, {name="farming_plus:lemon_blossoms"})
+farming.add_plant("farming_plus:lemon", {"farming_plus:lemon_1", "farming_plus:lemon_2", "farming_plus:lemon_3",
+		"farming_plus:lemon_4", "farming_plus:lemon_5"}, 250, 4, 1, 2)
 
-	end
-})
-minetest.register_abm({
-	nodenames = "farming_plus:lemon_blossoms",
-	interval = 500,
-	chance = 2,
-	action = function(pos, node)
---		pos.y = pos.y-2
---		if minetest.env:get_node(pos).name ~= "farming:soil_wet" then
---			return
---		end
---		pos.y = pos.y+2
-		if not minetest.env:get_node_light(pos) then
-			return
-		end
-		if minetest.env:get_node_light(pos) < 8 then
-			return
-		end
-		minetest.env:set_node(pos, {name="farming_plus:lemon_fruited"})
+-- aliases for older versions
+minetest.register_alias("farming_plus:lemon_leaves", "farming_plus:lemonb")
+minetest.register_alias("farming_plus:lemon_blossoms", "farming_plus:lemonb")
+minetest.register_alias("farming_plus:lemon_fruited", "farming_plus:lemonb")
 
-	end
-})

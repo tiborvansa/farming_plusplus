@@ -8,7 +8,7 @@ else
 	farming.S = function ( s ) return s end
 end
 
-function farming.add_plant(full_grown, names, interval, chance, hardy)
+function farming.add_plant(full_grown, names, interval, chance, hardy, height)
 	minetest.register_abm({
 		nodenames = names,
 		interval = interval,
@@ -40,6 +40,14 @@ function farming.add_plant(full_grown, names, interval, chance, hardy)
 				new_node.name = full_grown
 			end
 			minetest.set_node(pos, new_node)
+			if height and height >= 2 and step >= 3 then
+				pos.y = pos.y+1
+				minetest.set_node(pos, {name=new_node.name.."b"})
+				if height == 3 and step >= 4 then --corn
+					pos.y = pos.y+1
+					minetest.set_node(pos, {name=new_node.name.."c"})
+				end
+			end
 		end
 	})
 
@@ -48,7 +56,7 @@ function farming.add_plant(full_grown, names, interval, chance, hardy)
 		names = names,
 		interval = interval,
 		chance = chance,
---		hardy = hardy
+		height = height
 	})
 end
 
@@ -200,6 +208,14 @@ minetest.register_on_generated(function(minp, maxp, seed)
                                                         local plant = farming.registered_plants[plant_choice]
                                                         if plant then
                                                                 minetest.set_node(p, {name=plant.full_grown})
+								if plant.height and plant.height >= 2 then
+									p.y = p.y+1
+									minetest.set_node(p, {name=plant.full_grown.."b"})
+									if plant.height == 3 then
+										p.y = p.y+1
+										minetest.set_node(p, {name=plant.full_grown.."c"})
+									end
+								end
                                                         end
                                                 end
                                         end
@@ -266,6 +282,32 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 	end
 	return itemstack
 end
+
+-- Spreading behavior for plants, inspired by raspberry spreading in Docfarming
+-- code modeled after flowers mod spreading
+minetest.register_abm({
+	nodenames = {"group:spreading"},
+	interval = 50,
+	chance = 10,
+	action = function(pos, node)
+		local pos0 = {x=pos.x-1,y=pos.y-2,z=pos.z-1}
+		local pos1 = {x=pos.x+1,y=pos.y+1,z=pos.z+1}
+		local spot = minetest.find_nodes_in_area(pos0, pos1, "group:soil")
+		if #spot > 0 then
+			spot = spot[math.random(#spot)]
+			spot.y = spot.y+1
+			local mark = minetest.get_node(spot).name
+			if minetest.registered_nodes[mark] then
+				if minetest.registered_nodes[mark].buildable_to and mark ~= "default:water_source" then
+					local data = string.split(node.name, ":", 2)
+					local data2 = string.split(data[2], "_", 2)
+					local start = {name = data[1]..":"..data2[1].."_1"}
+					minetest.set_node(spot, start)
+				end
+			end
+		end
+	end,
+})
 
 -- ========= ALIASES FOR FARMING MOD BY SAPIER =========
 -- potatoe -> potatoe
@@ -348,26 +390,7 @@ dofile(minetest.get_modpath("farming_plus").."/walnut.lua")
 -- ========= COFFEE =========
 dofile(minetest.get_modpath("farming_plus").."/coffee.lua")
 
--- to deal with leftover docfarming grass 
+-- ========= DOCGRASS =========
+dofile(minetest.get_modpath("farming_plus").."/docgrass.lua")
 
-minetest.register_node("farming_plus:docgrass", {
-	paramtype = "light",
-	walkable = false,
-	drawtype = "plantlike",
-	drop = "",
-	tiles = {"farming_docgrass.png"},
-	drop = {
-		max_items = 1,
-		items = {
-			{ items = {'farming_plus:peach_seed'}, rarity = 100},
-			{ items = {'farming_plus:melon_seed'}, rarity = 100},
-			{ items = {'farming_plus:raspberry_seed'}, rarity = 100},
-			{ items = {'farming_plus:walnut_seed'}, rarity = 100},
-			{ items = {'farming_plus:lemon_seed'}, rarity = 100},
-		}
-	},
-	groups = {snappy=3, flammable=2, not_in_creative_inventory=1},
-	sounds = default.node_sound_leaves_defaults(),
-})
 
-minetest.register_alias("docfarming:grass", "farming_plus:docgrass")

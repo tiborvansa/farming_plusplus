@@ -1,5 +1,5 @@
--- Original farming_plus rhubarb by PilzAdam, WTFPL
--- Modified by MTDad with added code from Docfarming, WTFPL
+-- Original farming_plus rhubarb by PilzAdam,
+-- Modified by MTDad to be "everbearing" and "spreading", inspired by the Docfarming raspberry,
 
 -- main `S` code in init.lua
 local S
@@ -76,7 +76,7 @@ minetest.register_node("farming_plus:rhubarb_4", {
 			{ items = {"farming_plus:rhubarb_seed"}, rarity = 3 }
 		}
 	},
-	groups = {snappy=3, flammable=2, not_in_creative_inventory=1,plant=1},
+	groups = {snappy=3, flammable=2, not_in_creative_inventory=1,plant=1, spreading=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -144,73 +144,6 @@ minetest.register_craftitem("farming_plus:rhubarb_item", {
 })
 
 farming.add_plant("farming_plus:rhubarb", {"farming_plus:rhubarb_1", "farming_plus:rhubarb_2", "farming_plus:rhubarb_3", "farming_plus:rhubarb_4", "farming_plus:rhubarb_5", "farming_plus:rhubarb_6"}, 250, 2, 1)
-
--- ABM for spreading behavior from Docfarming
-num = PseudoRandom(111)
-	minetest.register_abm({
-		nodenames = "farming_plus:rhubarb_2",
-		interval = 250,
-		chance = 10,
-		action = function(pos, node)
-			
-			pos.x = pos.x-1
-			x = num:next(1, 3)
-			if x > 1 then
-				pos.x = pos.x+1
-				if x > 2 then	
-					pos.x = pos.x+1
-				end
-			end
-			pos.z=pos.z-1
-			z = num:next(1, 3)
-			if z > 1 then
-				pos.z = pos.z+1
-				if z > 2 then	
-					pos.z = pos.z+1
-				end
-			end
-			if minetest.env:get_node(pos).name=="air" then
-				pos.y = pos.y-1
-				name = minetest.env:get_node(pos).name
-				if name=="default:dirt" then
-					pos.y=pos.y+1
-					minetest.env:set_node(pos, {name="farming_plus:rhubarb_1"})
-				end
-				if name=="default:dirt_with_grass" then
-					pos.y=pos.y+1
-					minetest.env:set_node(pos, {name="farming_plus:rhubarb_1"})
-				end
-				if name=="air" then
-					pos.y=pos.y-1
-					name = minetest.env:get_node(pos).name
-					if name=="default:dirt" then
-						pos.y=pos.y+1
-						minetest.env:set_node(pos, {name="farming_plus:rhubarb_1"})
-					end
-					if name=="default:dirt_with_grass" then
-						pos.y=pos.y+1
-						minetest.env:set_node(pos, {name="farming_plus:rhubarb_1"})
-					end
-				end
-				
-			end
-			pos.y=pos.y+1
-			if minetest.env:get_node(pos).name=="air" then
-				pos.y = pos.y-1
-				name = minetest.env:get_node(pos).name
-				if name=="default:dirt" then
-					pos.y=pos.y+1
-					minetest.env:set_node(pos, {name="farming_plus:rhubarb_1"})
-				end
-				if name=="default:dirt_with_grass" then
-					pos.y=pos.y+1
-					minetest.env:set_node(pos, {name="farming_plus:rhubarb_1"})
-				end
-			end
-			
-			
-		end
-})
 
 minetest.register_alias("farming:rhubarb", "farming_plus:rhubarb_item")
 minetest.register_alias("farming:rhubarb_1", "farming_plus:rhubarb_1")

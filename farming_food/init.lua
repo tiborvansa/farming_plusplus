@@ -1,4 +1,4 @@
--- farming_food v. 0.1
+-- farming_food
 -- A Mod providing a few recipes and integration with other Mods
 -- by MTDad
 
@@ -22,9 +22,10 @@ end
 
 if minetest.get_modpath("diet") then path = diet
 	elseif minetest.get_modpath("hud") then path = hud
-	else return end
+	end
 if path ~= nil then
 	overwrite("farming_plus:corn_item", 2)
+	overwrite("farming_plus:corn_cob", 5)
 	overwrite("farming_plus:cucumber_item", 2)
 	overwrite("farming_plus:lemon_item", 2)
 	overwrite("farming_plus:melon_item", 2)
@@ -37,7 +38,12 @@ if path ~= nil then
 		overwrite("farming_food:corn_bread", 4)
 		overwrite("farming_food:peach_cobbler", 4)
 		overwrite("farming_food:strawberry_lemonade", 2)
-	else return end
+		overwrite("farming_food:cookie_chocochip", 2)
+		overwrite("farming_food:pie_cooked", 6)
+		overwrite("farming_food:fritter_walnut", 6)
+		overwrite("farming_food:fritter_corn", 6)
+		overwrite("farming_food:fritter_apple", 6)
+	end
 end
 
 

@@ -479,20 +479,47 @@ minetest.register_craft({
 	burntime = 5
 })
 
--- for farming redo replacement
-minetest.register_alias("farming:pumpkin_8", "farming:pumpkin")
-minetest.register_alias("farming:pumpkin_7", "farming:pumpkin")
-minetest.register_alias("farming:pumpkin_6", "farming:pumpkin_2")
-minetest.register_alias("farming:pumpkin_5", "farming:pumpkin_2")
-minetest.register_alias("farming:pumpkin_4", "farming:pumpkin_2")
-minetest.register_alias("farming:pumpkin_3", "farming:pumpkin_2")
-minetest.register_alias("farming:jackolantern", "farming:pumpkin_face_light")
-minetest.register_alias("farming:pumpkin_dough", "farming:pumpkin:flour")
--- pumpkin cutting for redo compatibility
-minetest.register_craftitem(":farming:pumpkin_slice", {
-	description = "Pumpkin Slice",
-	inventory_image = "farming_pumpkin_slice.png",
+-- JP's minipumpkins, replace the pumpkin slice
+
+minetest.register_node(":farming:pumpkin_slice", {
+	description = "Mini Pumpkin",
+	tiles = {
+		"farming_mini_pumpkin_top.png",
+		"farming_mini_pumpkin_bottom.png",
+		"farming_mini_pumpkin_sides.png",
+		"farming_mini_pumpkin_sides.png",
+		"farming_mini_pumpkin_sides.png",
+		"farming_mini_pumpkin_sides.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = { snappy=3 },
 	on_use = minetest.item_eat(2),
+	on_punch = function(pos, node, puncher)
+		local tool = puncher:get_wielded_item():get_name()
+		if tool and string.match(tool, "sword") then
+			node.name = "farming:mini_pumpkin_face"
+			minetest.set_node(pos, node)
+		end
+	end,
+	node_box = {
+		type = "fixed",
+		fixed = {
+                        {-0.21, -0.5, -0.21, 0.21, -0.4375, 0.21}, -- NodeBox1
+			{-0.25, -0.4375, -0.25, 0.25, -0.375, 0.25}, -- NodeBox2
+			{-0.28, -0.375, -0.28, 0.28, -0.3125, 0.28}, -- NodeBox3
+			{-0.3125, -0.3125, -0.3125, 0.3125, 0, 0.3125}, -- NodeBox4
+			{-0.28, 0, -0.28, 0.28, 0.0625, 0.28}, -- NodeBox5
+			{-0.25, 0.0625, -0.25, 0.25, 0.125, 0.25}, -- NodeBox6
+			{-0.21, 0.125, -0.21, 0.21, 0.1875, 0.21}, -- NodeBox7
+			{-0.03, 0.1875, -0.03, 0.03, 0.25, 0.03}, -- NodeBox8
+		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = { -0.3125, -0.5, -0.3125, 0.3125, 0.25, 0.3125 }
+	},
 })
 
 minetest.register_craft({
@@ -510,5 +537,98 @@ minetest.register_craft({
 		{"", "farming:pumpkin", ""},
 	}
 })
+
+minetest.register_node(":farming:mini_pumpkin_face", {
+	description = "Mini Jack o Lantern(off)",
+	tiles = {
+		"farming_mini_pumpkin_top.png",
+		"farming_mini_pumpkin_bottom.png",
+		"farming_mini_pumpkin_sides.png",
+		"farming_mini_pumpkin_sides.png",
+		"farming_mini_pumpkin_sides.png",
+		"farming_mini_pumpkin_face.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+        light_source = 12,
+	groups = { snappy=3 },
+	node_box = {
+		type = "fixed",
+		fixed = {
+                        {-0.21, -0.5, -0.21, 0.21, -0.4375, 0.21}, -- NodeBox1
+			{-0.25, -0.4375, -0.25, 0.25, -0.375, 0.25}, -- NodeBox2
+			{-0.28, -0.375, -0.28, 0.28, -0.3125, 0.28}, -- NodeBox3
+			{-0.3125, -0.3125, -0.3125, 0.3125, 0, 0.3125}, -- NodeBox4
+			{-0.28, 0, -0.28, 0.28, 0.0625, 0.28}, -- NodeBox5
+			{-0.25, 0.0625, -0.25, 0.25, 0.125, 0.25}, -- NodeBox6
+			{-0.21, 0.125, -0.21, 0.21, 0.1875, 0.21}, -- NodeBox7
+			{-0.03, 0.1875, -0.03, 0.03, 0.25, 0.03}, -- NodeBox8
+		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = { -0.3125, -0.5, -0.3125, 0.3125, 0.25, 0.3125 }
+	},
+        drop = "farming:mini_pumpkin_face",
+        on_punch = function(pos, node, puncher)
+                node.name = "farming:mini_pumpkin_face_light"
+                minetest.set_node(pos, node)
+                nodeupdate(pos)
+        end,
+})
+
+minetest.register_node(":farming:mini_pumpkin_face_light", {
+	description = "Mini Jack o Lantern(on)",
+	tiles = {
+		"farming_mini_pumpkin_top.png",
+		"farming_mini_pumpkin_bottom.png",
+		"farming_mini_pumpkin_sides.png",
+		"farming_mini_pumpkin_sides.png",
+		"farming_mini_pumpkin_sides.png",
+		"farming_mini_pumpkin_face_light.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+        light_source = 12,
+	groups = { snappy=3 },
+	node_box = {
+		type = "fixed",
+		fixed = {
+                        {-0.21, -0.5, -0.21, 0.21, -0.4375, 0.21}, -- NodeBox1
+			{-0.25, -0.4375, -0.25, 0.25, -0.375, 0.25}, -- NodeBox2
+			{-0.28, -0.375, -0.28, 0.28, -0.3125, 0.28}, -- NodeBox3
+			{-0.3125, -0.3125, -0.3125, 0.3125, 0, 0.3125}, -- NodeBox4
+			{-0.28, 0, -0.28, 0.28, 0.0625, 0.28}, -- NodeBox5
+			{-0.25, 0.0625, -0.25, 0.25, 0.125, 0.25}, -- NodeBox6
+			{-0.21, 0.125, -0.21, 0.21, 0.1875, 0.21}, -- NodeBox7
+			{-0.03, 0.1875, -0.03, 0.03, 0.25, 0.03}, -- NodeBox8
+		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = { -0.3125, -0.5, -0.3125, 0.3125, 0.25, 0.3125 }
+	},
+        drop = "farming:mini_pumpkin_face",
+        on_punch = function(pos, node, puncher)
+                node.name = "farming:mini_pumpkin_face"
+                minetest.set_node(pos, node)
+                nodeupdate(pos)
+        end,
+})
+
+-- for farming redo replacement
+minetest.register_alias("farming:pumpkin_8", "farming:pumpkin")
+minetest.register_alias("farming:pumpkin_7", "farming:pumpkin")
+minetest.register_alias("farming:pumpkin_6", "farming:pumpkin_2")
+minetest.register_alias("farming:pumpkin_5", "farming:pumpkin_2")
+minetest.register_alias("farming:pumpkin_4", "farming:pumpkin_2")
+minetest.register_alias("farming:pumpkin_3", "farming:pumpkin_2")
+minetest.register_alias("farming:jackolantern", "farming:pumpkin_face_light")
+minetest.register_alias("farming:pumpkin_dough", "farming:pumpkin_flour")
+
+
+
 
 

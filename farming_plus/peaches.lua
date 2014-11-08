@@ -13,6 +13,21 @@ minetest.register_craftitem("farming_plus:peach_seed", {
 	end
 })
 
+minetest.register_craftitem("farming_plus:peach_item", {
+	description = S("Peach"),
+	inventory_image = "farming_peach.png",
+	groups = {food_peach = 1},
+	on_use = minetest.item_eat(4),
+})
+
+minetest.register_craft({
+	output = "farming_plus:peach_seed",
+	recipe = {
+		{"farming_plus:peach_item"},
+	}
+})
+
+-- Trunk Growth
 minetest.register_node("farming_plus:peach_1", {
 	paramtype = "light",
 	walkable = false,
@@ -25,7 +40,7 @@ minetest.register_node("farming_plus:peach_1", {
 			{-0.5, -0.5, -0.5, 0.5, -0.5+5/16, 0.5}
 		},
 	},
-	groups = {snappy=3, flammable=2, not_in_creative_inventory=1,plant=1},
+	groups = {snappy=3, flammable=2, not_in_creative_inventory=1, plant=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -41,7 +56,7 @@ minetest.register_node("farming_plus:peach_2", {
 			{-0.5, -0.5, -0.5, 0.5, -0.5+10/16, 0.5}
 		},
 	},
-	groups = {snappy=3, flammable=2, not_in_creative_inventory=1,plant=1},
+	groups = {snappy=3, flammable=2, not_in_creative_inventory=1, plant=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -57,7 +72,41 @@ minetest.register_node("farming_plus:peach_3", {
 			{-0.5, -0.5, -0.5, 0.5, -0.5+15/16, 0.5}
 		},
 	},
-	groups = {snappy=3, flammable=2, not_in_creative_inventory=1,plant=1},
+	groups = {snappy=3, flammable=2, not_in_creative_inventory=1, plant=1},
+	sounds = default.node_sound_leaves_defaults(),
+})
+
+minetest.register_node("farming_plus:peach_4", {
+	paramtype = "light",
+	walkable = true,
+	drawtype = "plantlike",
+	tiles = {"farming_orangetrunk_4.png"},
+	drop = {
+		max_items = 3,
+		items = {
+			{ items = {'default:wood'} },
+			{ items = {'default:wood'}, rarity = 2 },
+			{ items = {'default:wood'}, rarity = 5 }
+		}
+	},
+	groups = {snappy=3, flammable=2, not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+})
+
+minetest.register_node("farming_plus:peach_5", {
+	paramtype = "light",
+	walkable = true,
+	drawtype = "plantlike",
+	tiles = {"farming_orangetrunk_4.png"},
+	drop = {
+		max_items = 3,
+		items = {
+			{ items = {'default:wood'} },
+			{ items = {'default:wood'}, rarity = 2 },
+			{ items = {'default:wood'}, rarity = 5 }
+		}
+	},
+	groups = {snappy=3, flammable=2, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -74,53 +123,48 @@ minetest.register_node("farming_plus:peach", {
 			{ items = {'default:wood'}, rarity = 5 }
 		}
 	},
-	groups = {snappy=3, flammable=2, not_in_creative_inventory=1,plant=1},
+	groups = {snappy=3, flammable=2, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
-minetest.register_craftitem("farming_plus:peach_item", {
-	description = S("Peach"),
-	inventory_image = "farming_peach.png",
-	groups = {food_peach = 1},
-	on_use = minetest.item_eat(4),
-})
-
--- peach seed craft added here
-minetest.register_craft({
-	output = "farming_plus:peach_seed",
-	recipe = {
-		{"farming_plus:peach_item"},
-	}
-})
-
-farming.add_plant("farming_plus:peach", {"farming_plus:peach_1", "farming_plus:peach_2", "farming_plus:peach_3"}, 250, 2)
-
--- second tier growth section, borrowed from DocFarming's "Corn"
-minetest.register_node("farming_plus:peach_leaves", {
+-- second tier growth section
+minetest.register_node("farming_plus:peach_4b", {
 	paramtype = "light",
 	walkable = true,
 	drawtype = "allfaces_optional",
 	drop = "",
 	tiles = {"farming_fruittree_1.png"},
+	after_dig_node = function(pos)
+		minetest.set_node(pos, {name = "farming_plus:peach_4b"})
+	end,
 	groups = {snappy=3, flammable=2, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
-minetest.register_node("farming_plus:peach_blossoms", {
+
+minetest.register_node("farming_plus:peach_5b", {
 	paramtype = "light",
 	walkable = true,
 	drawtype = "allfaces_optional",
 	drop = "",
 	tiles = {"farming_peach_blossoms.png"},
+	after_dig_node = function(pos)
+		minetest.set_node(pos, {name = "farming_plus:peach_4b"})
+		pos.y = pos.y-1
+		minetest.set_node(pos, {name = "farming_plus:peach_4"})
+	end,
 	groups = {snappy=3, flammable=2, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
-minetest.register_node("farming_plus:peach_fruited", {
+
+minetest.register_node("farming_plus:peachb", {
 	paramtype = "light",
 	walkable = true,
 	drawtype = "allfaces_optional",
 	tiles = {"farming_peach_fruited.png"},
 	after_dig_node = function(pos)
-		minetest.env:add_node(pos, {name="farming_plus:peach_leaves"})
+		minetest.set_node(pos, {name = "farming_plus:peach_4b"})
+		pos.y = pos.y-1
+		minetest.set_node(pos, {name = "farming_plus:peach_4"})
 	end,
 	drop = {
 		max_items = 4,
@@ -134,67 +178,11 @@ minetest.register_node("farming_plus:peach_fruited", {
 	groups = {snappy=3, flammable=2, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
-minetest.register_abm({
-	nodenames = "farming_plus:peach",
-	interval = 30,
-	chance = 1,
-	action = function(pos, node)
---		pos.y = pos.y-1
---		if minetest.env:get_node(pos).name ~= "farming:soil_wet" then
---			return
---		end
---		pos.y = pos.y+1
-		if not minetest.env:get_node_light(pos) then
-			return
-		end
-		if minetest.env:get_node_light(pos) < 8 then
-			return
-		end
-		pos.y=pos.y+1
-		if minetest.env:get_node(pos).name ~= "air" then
-			return
-		end
-		minetest.env:set_node(pos, {name="farming_plus:peach_leaves"})
 
-	end
-})
-minetest.register_abm({
-	nodenames = "farming_plus:peach_leaves",
-	interval = 250,
-	chance = 2,
-	action = function(pos, node)
---		pos.y = pos.y-2
---		if minetest.env:get_node(pos).name ~= "farming:soil_wet" then
---			return
---		end
---		pos.y = pos.y+2
-		if not minetest.env:get_node_light(pos) then
-			return
-		end
-		if minetest.env:get_node_light(pos) < 8 then
-			return
-		end
-		minetest.env:set_node(pos, {name="farming_plus:peach_blossoms"})
+farming.add_plant("farming_plus:peach", {"farming_plus:peach_1", "farming_plus:peach_2", "farming_plus:peach_3",
+		"farming_plus:peach_4", "farming_plus:peach_5"}, 250, 4, 1, 2)
 
-	end
-})
-minetest.register_abm({
-	nodenames = "farming_plus:peach_blossoms",
-	interval = 500,
-	chance = 2,
-	action = function(pos, node)
---		pos.y = pos.y-2
---		if minetest.env:get_node(pos).name ~= "farming:soil_wet" then
---			return
---		end
---		pos.y = pos.y+2
-		if not minetest.env:get_node_light(pos) then
-			return
-		end
-		if minetest.env:get_node_light(pos) < 8 then
-			return
-		end
-		minetest.env:set_node(pos, {name="farming_plus:peach_fruited"})
-
-	end
-})
+-- aliases for older versions
+minetest.register_alias("farming_plus:peach_leaves", "farming_plus:peachb")
+minetest.register_alias("farming_plus:peach_blossoms", "farming_plus:peachb")
+minetest.register_alias("farming_plus:peach_fruited", "farming_plus:peachb")
