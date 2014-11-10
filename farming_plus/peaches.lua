@@ -134,9 +134,6 @@ minetest.register_node("farming_plus:peach_4b", {
 	drawtype = "allfaces_optional",
 	drop = "",
 	tiles = {"farming_fruittree_1.png"},
-	after_dig_node = function(pos)
-		minetest.set_node(pos, {name = "farming_plus:peach_4b"})
-	end,
 	groups = {snappy=3, flammable=2, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 })

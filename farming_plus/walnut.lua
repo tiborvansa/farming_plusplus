@@ -122,9 +122,6 @@ minetest.register_node("farming_plus:walnut_4b", {
 	drawtype = "plantlike",
 	drop = "",
 	tiles = {"farming_walnut_leaves.png"},
-	after_dig_node = function(pos)
-		minetest.set_node(pos, {name = "farming_plus:walnut_4b"})
-	end,
 	groups = {snappy=3, flammable=2, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
