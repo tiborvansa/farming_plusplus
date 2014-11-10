@@ -166,6 +166,9 @@ farming.seeds = {
 
 
 -- ========= GENERATE PLANTS IN THE MAP =========
+
+dofile(minetest.get_modpath("farming_plus").."/good_ground.lua")
+
 minetest.register_on_generated(function(minp, maxp, seed)
         if maxp.y >= 2 and minp.y <= 0 then
                 -- Generate plants (code from flowers)
@@ -202,21 +205,25 @@ minetest.register_on_generated(function(minp, maxp, seed)
                                         if minetest.registered_nodes[nn] and
                                                 minetest.registered_nodes[nn].buildable_to then
                                                 nn = minetest.get_node({x=x,y=ground_y,z=z}).name
-                                                if nn == "default:dirt_with_grass" then
-                                                        --local plant_choice = pr:next(1, #farming.registered_plants)
-                                                        local plant_choice = math.floor(perlin1:get2d({x=x,y=z})*(#farming.registered_plants))
-                                                        local plant = farming.registered_plants[plant_choice]
-                                                        if plant then
-                                                                minetest.set_node(p, {name=plant.full_grown})
-								if plant.height and plant.height >= 2 then
-									p.y = p.y+1
-									minetest.set_node(p, {name=plant.full_grown.."b"})
-									if plant.height == 3 then
+                                                --if nn == "default:dirt_with_grass" then
+						for i = 1, #farming.good_ground do
+							if nn == farming.good_ground[i] then
+                                                  	      --local plant_choice = pr:next(1, #farming.registered_plants)
+                                                	        local plant_choice = math.floor(perlin1:get2d({x=x,y=z})*(#farming.registered_plants))
+					     		        local plant = farming.registered_plants[plant_choice]
+                                                        	if plant then
+                                                                	minetest.set_node(p, {name=plant.full_grown})
+									if plant.height and plant.height >= 2 then
 										p.y = p.y+1
-										minetest.set_node(p, {name=plant.full_grown.."c"})
+										minetest.set_node(p, {name=plant.full_grown.."b"})
+										if plant.height == 3 then
+											p.y = p.y+1
+											minetest.set_node(p, {name=plant.full_grown.."c"})
+										end
 									end
-								end
-                                                        end
+                                                        	end
+								break
+							end
                                                 end
                                         end
                                 end
