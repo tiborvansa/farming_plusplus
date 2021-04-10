@@ -145,8 +145,8 @@ minetest.register_craftitem("farming_plus:rhubarb_item", {
 
 farming.add_plant("farming_plus:rhubarb", {"farming_plus:rhubarb_1", "farming_plus:rhubarb_2", "farming_plus:rhubarb_3", "farming_plus:rhubarb_4", "farming_plus:rhubarb_5", "farming_plus:rhubarb_6"}, 250, 2, 1)
 
-minetest.register_alias("farming:rhubarb", "farming_plus:rhubarb_item")
-minetest.register_alias("farming:rhubarb_1", "farming_plus:rhubarb_1")
-minetest.register_alias("farming:rhubarb_2", "farming_plus:rhubarb_2")
-minetest.register_alias("farming:rhubarb_3", "farming_plus:rhubarb_3")
+--minetest.register_alias("farming:rhubarb", "farming_plus:rhubarb_item")
+--minetest.register_alias("farming:rhubarb_1", "farming_plus:rhubarb_1")
+--minetest.register_alias("farming:rhubarb_2", "farming_plus:rhubarb_2")
+--minetest.register_alias("farming:rhubarb_3", "farming_plus:rhubarb_3")
 

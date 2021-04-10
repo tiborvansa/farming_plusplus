@@ -214,6 +214,7 @@ minetest.register_craft({
 	},
 })
 
+--[[
 minetest.register_alias("farming:cookie", "farming_food:cookie_chocochip")
 minetest.register_alias("farming:donut", "farming_food:fritter_corn")
 minetest.register_alias("farming:donut_chocolate", "farming_food:fritter_walnut")
@@ -221,3 +222,4 @@ minetest.register_alias("farming:donut_apple", "farming_food:fritter_apple")
 minetest.register_alias("farming:smoothie_raspberry", "farming_food:strawberry_lemonade")
 minetest.register_alias("farming:rhubarb_pie", "farming_food:pie_cooked")
 minetest.register_alias("farming:chocolate_dark", "food:dark_chocolate")
+]]

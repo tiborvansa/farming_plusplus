@@ -138,6 +138,7 @@ minetest.register_craftitem("farming_plus:carrot_item", {
 
 farming.add_plant("farming_plus:carrot", {"farming_plus:carrot_1", "farming_plus:carrot_2", "farming_plus:carrot_3", "farming_plus:carrot_4", "farming_plus:carrot_5", "farming_plus:carrot_6"}, 250, 2)
 
+--[[
 minetest.register_alias("docfarming:carrotseed", "farming_plus:carrot_seed")
 minetest.register_alias("docfarming:carrot", "farming_plus:carrot_item")
 minetest.register_alias("farming:carrot", "farming_plus:carrot_item")
@@ -153,3 +154,4 @@ minetest.register_alias("farming:carrot_5", "farming_plus:carrot_5")
 minetest.register_alias("farming:carrot_6", "farming_plus:carrot_6")
 minetest.register_alias("farming:carrot_7", "farming_plus:carrot")
 minetest.register_alias("farming:carrot_8", "farming_plus:carrot")
+]]

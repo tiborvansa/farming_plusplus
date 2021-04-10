@@ -126,6 +126,8 @@ minetest.register_abm({
 	end
 })
 
+--[[
 minetest.register_alias("farming:drinking_cup", "farming_food:coffee_mug_empty")
 minetest.register_alias("farming:coffee_cup", "farming_food:coffee_mug_cold")
 minetest.register_alias("farming:coffee_cup_hot", "farming_food:coffee_mug_hot")
+]]

@@ -145,6 +145,7 @@ minetest.register_craft({
 
 farming.add_plant("farming_plus:cucumber", {"farming_plus:cucumber_1", "farming_plus:cucumber_2", "farming_plus:cucumber_3", "farming_plus:cucumber_4", "farming_plus:cucumber_5", "farming_plus:cucumber_6"}, 250, 2)
 
+--[[
 minetest.register_alias("docfarming:cucumberseed", "farming_plus:cucumber_seed")
 minetest.register_alias("docfarming:cucumber", "farming_plus:cucumber_item")
 minetest.register_alias("farming:cucumber", "farming_plus:cucumber_item")
@@ -156,4 +157,5 @@ minetest.register_alias("docfarming:cucumber3", "farming_plus:cucumber_5")
 minetest.register_alias("farming:cucumber_3", "farming_plus:cucumber_5")
 minetest.register_alias("docfarming:cucumber4", "farming_plus:cucumber")
 minetest.register_alias("farming:cucumber_4", "farming_plus:cucumber")
+]]
 

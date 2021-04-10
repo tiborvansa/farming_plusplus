@@ -81,4 +81,5 @@ minetest.register_craft({
 	recipe = {"farming_plus:cocoa"},
 })
 
-minetest.register_alias("farming:cocoa_beans", "farming_plus:cocoa_bean")
+
+--minetest.register_alias("farming:cocoa_beans", "farming_plus:cocoa_bean")

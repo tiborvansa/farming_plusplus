@@ -92,9 +92,11 @@ minetest.register_node("farming_plus:coffee", {
 
 farming.add_plant("farming_plus:coffee", {"farming_plus:coffee_1", "farming_plus:coffee_2", "farming_plus:coffee_3", "farming_plus:coffee_4"}, 250, 4)
 
+--[[
 minetest.register_alias("farming:coffee_beans", "farming_plus:coffee_beans")
 minetest.register_alias("farming:coffee_1", "farming_plus:coffee_1")
 minetest.register_alias("farming:coffee_2", "farming_plus:coffee_2")
 minetest.register_alias("farming:coffee_3", "farming_plus:coffee_3")
 minetest.register_alias("farming:coffee_4", "farming_plus:coffee_4")
 minetest.register_alias("farming:coffee_5", "farming_plus:coffee")
+]]

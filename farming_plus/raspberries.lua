@@ -157,6 +157,7 @@ minetest.register_craftitem("farming_plus:raspberry_item", {
 
 farming.add_plant("farming_plus:raspberry", {"farming_plus:raspberry_1", "farming_plus:raspberry_2", "farming_plus:raspberry_3", "farming_plus:raspberry_4", "farming_plus:raspberry_5", "farming_plus:raspberry_6"}, 250, 2, 1)
 
+--[[
 minetest.register_alias("docfarming:raspberryseed", "farming_plus:raspberry_seed")
 minetest.register_alias("docfarming:raspberry", "farming_plus:raspberry_item")
 minetest.register_alias("farming:raspberries", "farming_plus:raspberry_item")
@@ -168,4 +169,5 @@ minetest.register_alias("docfarming:raspberry3", "farming_plus:raspberry_3")
 minetest.register_alias("farming:raspberry_3", "farming_plus:raspberry_3")
 minetest.register_alias("docfarming:raspberry4", "farming_plus:raspberry_4")
 minetest.register_alias("farming:raspberry_4", "farming_plus:raspberry_4")
+]]
 

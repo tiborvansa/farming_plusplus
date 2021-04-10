@@ -192,7 +192,7 @@ minetest.register_node("farming_plus:cornc", {
 farming.add_plant("farming_plus:corn", {"farming_plus:corn_1", "farming_plus:corn_2", "farming_plus:corn_3",
 		"farming_plus:corn_4", "farming_plus:corn_5"}, 250, 2, nil, 3)
 
-
+--[[
 minetest.register_alias("docfarming:cornseed", "farming_plus:corn_seed")
 minetest.register_alias("docfarming:corn", "farming_plus:corn_item")
 minetest.register_alias("farming:corn", "farming_plus:corn_item")
@@ -219,3 +219,4 @@ minetest.register_alias("farming_plus:corn_23", "farming_plus:cornb")
 minetest.register_alias("farming_plus:corn_31", "farming_plus:corn_5c")
 minetest.register_alias("farming_plus:corn_32", "farming_plus:cornc")
 minetest.register_alias("farming:corn_cob", "farming_plus:corn_cob")
+]]

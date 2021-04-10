@@ -619,6 +619,7 @@ minetest.register_node(":farming:mini_pumpkin_face_light", {
 })
 
 -- for farming redo replacement
+--[[
 minetest.register_alias("farming:pumpkin_8", "farming:pumpkin")
 minetest.register_alias("farming:pumpkin_7", "farming:pumpkin")
 minetest.register_alias("farming:pumpkin_6", "farming:pumpkin_2")
@@ -627,6 +628,7 @@ minetest.register_alias("farming:pumpkin_4", "farming:pumpkin_2")
 minetest.register_alias("farming:pumpkin_3", "farming:pumpkin_2")
 minetest.register_alias("farming:jackolantern", "farming:pumpkin_face_light")
 minetest.register_alias("farming:pumpkin_dough", "farming:pumpkin_flour")
+]]
 
 
 

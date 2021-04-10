@@ -164,6 +164,7 @@ minetest.register_craft ({
 	}
 })
 
+--[[
 minetest.register_alias("farming:tomato", "farming_plus:tomato_item")
 minetest.register_alias("farming:tomato_1", "farming_plus:tomato_1")
 minetest.register_alias("farming:tomato_2", "farming_plus:tomato_2")
@@ -173,3 +174,4 @@ minetest.register_alias("farming:tomato_5", "farming_plus:tomato_5")
 minetest.register_alias("farming:tomato_6", "farming_plus:tomato_6")
 minetest.register_alias("farming:tomato_7", "farming_plus:tomato")
 minetest.register_alias("farming:tomato_8", "farming_plus:tomato")
+]]

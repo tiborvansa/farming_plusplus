@@ -156,6 +156,7 @@ minetest.register_node("farming_plus:melon", {
 })
 farming.add_plant("farming_plus:melon", {"farming_plus:melon_1", "farming_plus:melon_2", "farming_plus:melon_3", "farming_plus:melon_4", "farming_plus:melon_5", "farming_plus:melon_6", "farming_plus:melon_7"}, 300, 2)
 
+--[[
 minetest.register_alias("farming:melon_slice", "farming_plus:melon_item")
 minetest.register_alias("farming:melon_1", "farming_plus:melon_1")
 minetest.register_alias("farming:melon_2", "farming_plus:melon_2")
@@ -165,3 +166,4 @@ minetest.register_alias("farming:melon_5", "farming_plus:melon_5")
 minetest.register_alias("farming:melon_6", "farming_plus:melon_6")
 minetest.register_alias("farming:melon_7", "farming_plus:melon_7")
 minetest.register_alias("farming:melon_8", "farming_plus:melon")
+]]

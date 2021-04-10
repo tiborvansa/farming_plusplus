@@ -148,6 +148,7 @@ minetest.register_craftitem("farming_plus:potato_item", {
 
 farming.add_plant("farming_plus:potato", {"farming_plus:potato_1", "farming_plus:potato_2", "farming_plus:potato_3", "farming_plus:potato_4", "farming_plus:potato_5", "farming_plus:potato_6"}, 250, 2)
 
+--[[
 minetest.register_alias("farming_plus:potatoe_item", "farming_plus:potato_item")
 minetest.register_alias("farming_plus:potatoe_seed", "farming_plus:potato_seed")
 minetest.register_alias("farming_plus:potatoe", "farming_plus:potato")
@@ -162,7 +163,7 @@ minetest.register_alias("farming:potato_2", "farming_plus:potato_3")
 minetest.register_alias("docfarming:potato3", "farming_plus:potato_5")
 minetest.register_alias("farming:potato_3", "farming_plus:potato")
 minetest.register_alias("docfarming:potato4", "farming_plus:potato")
-minetest.register_alias("farming:potato_4", "farming_plus:potato")
+minetest.register_alias("farming:potato_4", "farming_plus:potato")]]
 -- for compatibility and replacement
 minetest.register_alias("docfarming:bakedpotato", "farming:baked_potato")
 minetest.register_craftitem(":farming:baked_potato", {
